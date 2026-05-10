@@ -1,5 +1,10 @@
 #include "Transaction.h"
 
+#include <iostream>
+#include <cmath>
+
+
+
 // Constructors
 Transaction::Transaction(long long amountInCents, Date date){
     // Durna logika vardan paprastumo
@@ -12,10 +17,8 @@ Transaction::Transaction(long long amountInCents, Date date){
 
     this->date = date;
 }
-Transaction::Transaction(double amount, Date date){
-    long long AIC = static_cast<long long>(round(amount * 100.0));
-    Transaction(AIC, date);
-}
+Transaction::Transaction(double amount, Date date)
+    : Transaction(static_cast<long long>(round(amount * 100.0)), date) {};
 Transaction::Transaction(){}
 
 // Getters / Setters
@@ -44,8 +47,8 @@ Transaction* Transaction::clone(){
     return new Transaction(*this);
 }
 
-string Transaction::toString(){
-    return "";
+string Transaction::toString() {
+    throw NotImplementedException();
 }
 
 // Operators

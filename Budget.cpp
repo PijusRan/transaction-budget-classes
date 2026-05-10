@@ -1,3 +1,7 @@
+#include <vector>
+
+#include "Transaction.h"
+
 class Budget{
     private:
     vector<Transaction> transactionArray;
@@ -12,6 +16,4 @@ class Budget{
         totalInCents += transaction.getAmountInCents();
         transactionArray.push_back(transaction);
     }
-
-    
 };

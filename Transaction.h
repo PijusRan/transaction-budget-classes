@@ -1,8 +1,11 @@
 #pragma once
-#include <iostream>
-#include <cmath>
-#include <vector>
+#include <string>
 using namespace std;
+
+class NotImplementedException : public std::logic_error {
+    public:
+    NotImplementedException() : std::logic_error("Method not implemented.") {}
+};
 
 struct Date{
     unsigned int y, m, d;
@@ -30,7 +33,7 @@ class Transaction{
     void setDate(Date date);
 
 // Methods
-    Transaction* clone();
+    virtual Transaction* clone();
 
     virtual string toString();
 
@@ -51,7 +54,7 @@ enum class IncomeType {
     OTHER
 };
 
-class Income : Transaction{
+class Income : public Transaction{
 // Fields
     private:
     IncomeType type;
@@ -66,7 +69,9 @@ class Income : Transaction{
     void setType(IncomeType type);
 
 // Methods
+    Transaction* clone() override;
     string toString() override;
+    
 };
 
 // === EXPENSE ===
@@ -83,7 +88,7 @@ enum class ExpenseType {
     OTHER
 };
 
-class Expense : Transaction{
+class Expense : public Transaction{
 // Fields
     private:
     ExpenseType type;
@@ -98,5 +103,33 @@ class Expense : Transaction{
     void setType(ExpenseType type);
 
 // Methods
+    Transaction* clone() override;
+    string toString() override;
+};
+
+// === LOAN (not implemented) ===
+
+enum class LoanType {
+    NOT_IMPLEMENTED
+};
+
+class Loan : public Transaction{
+// Fields
+    private:
+    int period;
+    double interestRate;
+    LoanType type;
+
+// Constructors
+    public:
+    Loan(long long amountInCents, Date date, LoanType, int period);
+    Loan(double amount, Date date, LoanType type);
+
+// Getters / Setters
+    LoanType getType();
+    void setType(LoanType);
+
+// Methods
+    Transaction* clone() override;
     string toString() override;
 };
