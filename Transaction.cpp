@@ -43,11 +43,7 @@ void Transaction::setDate(Date date){
 }
 
 // Methods
-Transaction* Transaction::clone(){
-    return new Transaction(*this);
-}
-
-string Transaction::toString() {
+Transaction* Transaction::clone() {
     throw NotImplementedException();
 }
 

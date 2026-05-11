@@ -34,8 +34,7 @@ class Transaction{
 
 // Methods
     virtual Transaction* clone();
-
-    virtual string toString();
+    virtual string toString() = 0;
 
 // Operators
     bool operator==(const Transaction& other) const;
@@ -85,6 +84,7 @@ enum class ExpenseType {
     HEALTHCARE,
     INSURANCE,
     EDUCATION,
+    LOAN,
     OTHER
 };
 
@@ -116,14 +116,14 @@ enum class LoanType {
 class Loan : public Transaction{
 // Fields
     private:
-    int period;
+    int periodInMonths;
     double interestRate;
     LoanType type;
 
 // Constructors
     public:
-    Loan(long long amountInCents, Date date, LoanType, int period);
-    Loan(double amount, Date date, LoanType type);
+    Loan(long long amountInCents, Date date, LoanType, int period, double interestRate);
+    Loan(double amount, Date date, LoanType type, int period, double interestRate);
 
 // Getters / Setters
     LoanType getType();
