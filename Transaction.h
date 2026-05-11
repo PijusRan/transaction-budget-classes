@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <stdexcept>
 using namespace std;
 
 class NotImplementedException : public std::logic_error {
