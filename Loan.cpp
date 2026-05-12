@@ -10,3 +10,9 @@ Loan.cpp Implementation
     into `periodInMonths` of `Expense` class with `LOAN` type.
     
 */
+
+#include "Transaction.h"
+
+Transaction* Loan::clone(){
+    throw NotImplementedException();
+}
