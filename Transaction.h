@@ -18,23 +18,24 @@ class Transaction{
     long long amountInCents;
     Date date;
 
-// Constructors
+// Constructors / Destructors
     public:
     Transaction(long long amountInCents, Date date);
     Transaction(double amount, Date date);
-    Transaction();
+    Transaction() = default;
+    virtual ~Transaction() = default;
 
 // Getters / Setters
     long long getAmountInCents();
     double getAmountInBase();
     Date getDate();
 
-    void setAmountInCents(long long amountInCents);
-    void setAmountInBase(double amountInBase);
-    void setDate(Date date);
+    virtual void setAmountInCents(long long amountInCents);
+    virtual void setAmountInBase(double amountInBase);
+    virtual void setDate(Date date);
 
 // Methods
-    virtual Transaction* clone();
+    virtual Transaction* clone() = 0;
     virtual string toString() = 0;
 
 // Operators
@@ -59,10 +60,11 @@ class Income : public Transaction{
     private:
     IncomeType type;
 
-// Constructors
+// Constructors / Destructors
     public:
     Income(long long amountInCents, Date date, IncomeType type);
     Income(double amount, Date date, IncomeType type);
+    ~Income() override = default;
 
 // Getters / Setters
     IncomeType getType();
@@ -71,7 +73,6 @@ class Income : public Transaction{
 // Methods
     Transaction* clone() override;
     string toString() override;
-    
 };
 
 // === EXPENSE ===
@@ -94,10 +95,11 @@ class Expense : public Transaction{
     private:
     ExpenseType type;
 
-// Constructors
+// Constructors / Destructors
     public:
     Expense(long long amountInCents, Date date, ExpenseType type);
     Expense(double amount, Date date, ExpenseType type);
+    ~Expense() override = default;
 
 // Getters / Setters
     ExpenseType getType();
@@ -121,10 +123,11 @@ class Loan : public Transaction{
     double interestRate;
     LoanType type;
 
-// Constructors
+// Constructors / Destructors
     public:
     Loan(long long amountInCents, Date date, LoanType, int period, double interestRate);
     Loan(double amount, Date date, LoanType type, int period, double interestRate);
+    ~Loan() override = default;
 
 // Getters / Setters
     LoanType getType();

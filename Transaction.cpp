@@ -3,8 +3,6 @@
 #include <iostream>
 #include <cmath>
 
-
-
 // Constructors
 Transaction::Transaction(long long amountInCents, Date date){
     // Durna logika vardan paprastumo
@@ -40,11 +38,6 @@ void Transaction::setAmountInBase(double amountInBase){
 }
 void Transaction::setDate(Date date){
     this->date = date;
-}
-
-// Methods
-Transaction* Transaction::clone() {
-    throw NotImplementedException();
 }
 
 // Operators
